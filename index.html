@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Felices 6 Meses 💙</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #dbeeff, #b8dcff, #e6f4ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #2c3e50;
+}
+
+/* TITULO */
+h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: #2a6f97;
+}
+
+p {
+  margin-bottom: 25px;
+}
+
+/* GIRASOLES */
+.garden {
+  display: flex;
+  gap: 15px;
+}
+
+.sunflower {
+  font-size: 55px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.sunflower:hover {
+  transform: scale(1.2) rotate(10deg);
+}
+
+/* MENSAJE */
+.message-box {
+  position: fixed;
+  bottom: 30px;
+  background: #ffffff;
+  padding: 15px 25px;
+  border-radius: 15px;
+  display: none;
+  border: 2px solid #b8dcff;
+}
+
+/* BOTON CARTA */
+.open-letter {
+  margin-top: 30px;
+  padding: 10px 20px;
+  background: #74b9ff;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.open-letter:hover {
+  background: #4da3ff;
+}
+
+/* CARTA */
+.letter {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.letter-content {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  max-width: 400px;
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+.close-btn {
+  margin-top: 15px;
+  padding: 8px 15px;
+  border: none;
+  background: #74b9ff;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: scale(0.8);}
+  to {opacity: 1; transform: scale(1);}
+}
+
+/* CORAZONES */
+.heart {
+  position: fixed;
+  font-size: 20px;
+  animation: float 4s linear infinite;
+}
+
+@keyframes float {
+  from {transform: translateY(0); opacity: 1;}
+  to {transform: translateY(-200px); opacity: 0;}
+}
+</style>
+</head>
+
+<body>
+
+<h1>Felices 6 Meses Mi Sarahí💙</h1>
+<p>Toca los girasoles 🌻</p>
+
+<div class="garden">
+  <div class="sunflower">🌻</div>
+  <div class="sunflower">🌻</div>
+  <div class="sunflower">🌻</div>
+  <div class="sunflower">🌻</div>
+  <div class="sunflower">🌻</div>
+</div>
+
+<button class="open-letter" onclick="openLetter()">Ábreme 💌</button>
+
+<div class="message-box" id="messageBox"></div>
+
+<!-- CARTA -->
+<div class="letter" id="letter">
+  <div class="letter-content">
+    <h2>Para ti Mi Amor💙</h2>
+    <p>
+      Hoy celebramos 6 meses juntos, y no sabes lo feliz que me hace tenerte en mi vida mi amor.  
+      Cada momento contigo es especial, cada sonrisa tuya ilumina mi día incluso en los más oscuros.  
+      Gracias por ser tú, por estar conmigo, por hacerme el Piojo más feliz.  
+      Te amo muchísimo mi Pulga💙✨
+    </p>
+    <button class="close-btn" onclick="closeLetter()">Cerrar</button>
+  </div>
+</div>
+
+<script>
+const messages = [
+  "Eres lo mejor que me ha pasado Amorcito💙",
+  "Gracias por estos 6 meses tan hermosos que me has dado🌻",
+  "Cada día contigo es mi favorito y lo valoro con mi alma💕",
+  "Tu sonrisa es mi lugar seguro, nadie cambiara eso 😊",
+  "Te amo muchísimo  con toda mi alma💙",
+  "Contigo todo es más bonito y se que nunca me faltara nada✨"
+];
+
+const flowers = document.querySelectorAll(".sunflower");
+const box = document.getElementById("messageBox");
+
+flowers.forEach(flower => {
+  flower.addEventListener("click", () => {
+    const random = messages[Math.floor(Math.random() * messages.length)];
+    box.innerText = random;
+    box.style.display = "block";
+    createHearts();
+  });
+});
+
+/* CARTA */
+function openLetter() {
+  document.getElementById("letter").style.display = "flex";
+}
+
+function closeLetter() {
+  document.getElementById("letter").style.display = "none";
+}
+
+/* CORAZONES */
+function createHearts() {
+  for (let i = 0; i < 5; i++) {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerText = "💙";
+
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.bottom = "0px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 4000);
+  }
+}
+</script>
+
+</body>
+</html>
